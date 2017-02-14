@@ -97,7 +97,7 @@ The following needs to be setup in you project in Simatic Manager:
    
 4. *Imporant:* You must call the MQTT function block in your OB1 program loop.
    
-5. Optional: You may compile the MQTT_Example. (rbw: Getting syntax errors.  Not yet understood why.)
+5. Optional: You may compile the MQTT_Example. (rbw: Example uses instance DB DB71.  You must have a DB71 in project or you will fail compilation)
    
 ## Network Configuration
 The MQTT FB can use the internal Ethernet adapter of a CPU (PN, choose MQTT_Main_PN.scl) or an external Ethernet adapter (CP, choose MQTT_Main_CP.scl).

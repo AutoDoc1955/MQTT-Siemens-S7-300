@@ -46,8 +46,8 @@ This code is written in Step7 SCL v5.3 SP1. It probably needs modification for i
 # How to Compile/Use in your project
 
 *Important:*
-
-There are two Makefiles:
+rbw: Import all files as "external sources" to the "sources" folder under the S7 Program in Step7.
+There are two Makefiles: (rbw: Makefiles have suffix .inp.  You compile them using Siemens Step7 SCL editor.)
 
 - Makefile-CP will compile the project with external ethernet support (CP, f.e. CP-343)
 - Makefile-PN will compile the project with internal ethernet support (PN)
@@ -88,16 +88,16 @@ The following needs to be setup in you project in Simatic Manager:
    - SFC59 RD_REC
 
    
-   *Important*: there will be an import conflict between FC10 AG_CTRL and FC10 EQ_STRING, as a solution rename one of the the FC-numbers during import
+   *Important*: (rbw: if using CP logic) there will be an import conflict between FC10 AG_CTRL and FC10 EQ_STRING, as a solution rename one of the the FC-numbers during import
    
    
 3. You have to compile the Makefile two times because there is still some DB creation problem.
-   The second run will succeed.
+   The second run will succeed. (rbw: My PN makefile compiled OK the first time.)
 
    
 4. *Imporant:* You must call the MQTT function block in your OB1 program loop.
    
-5. Optional: You may compile the MQTT_Example.
+5. Optional: You may compile the MQTT_Example. (rbw: Getting syntax errors.  Not yet understood why.)
    
 ## Network Configuration
 The MQTT FB can use the internal Ethernet adapter of a CPU (PN, choose MQTT_Main_PN.scl) or an external Ethernet adapter (CP, choose MQTT_Main_CP.scl).
@@ -107,6 +107,7 @@ Remarks for internal Ethernet (PN) adapter configuration:
 - The remote IP and Port parameters are configured via parameters for the MQTT Function Block (ipBlock1-4,ipPort)
 - you must set the MQTT Functionblock parameter connectionID to a desired value, f.e. 1
 Example for a MQTT FB call in OB1 configured for internal Ethernet (PN) usage:
+rbw: NOTE: You must create MQTT instance block "DB71" or MQTT_Example won't compile.
 *MQTT.DB71(net_config := DB_NET_CONFIG, connectionID := 1);*
 
  Remarks for external Ethernet (CP) adapter configuration:
